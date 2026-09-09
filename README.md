@@ -1,14 +1,14 @@
-# Twitter Simplificado — Spring Security 6 + JWT
+# Twitter Simplificado — Spring Security + JWT
 
-![Java](https://img.shields.io/badge/Java-21-orange?logo=openjdk&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.12-6DB33F?logo=springboot&logoColor=white)
-![Spring Security](https://img.shields.io/badge/Spring%20Security-6-6DB33F?logo=springsecurity&logoColor=white)
+![Java](https://img.shields.io/badge/Java-25-orange?logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1.1-6DB33F?logo=springboot&logoColor=white)
+![Spring Security](https://img.shields.io/badge/Spring%20Security-7-6DB33F?logo=springsecurity&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8-4479A1?logo=mysql&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
 ![JWT](https://img.shields.io/badge/Auth-JWT%20(RS256)-000000?logo=jsonwebtokens&logoColor=white)
 
 API REST de um Twitter simplificado, construída como estudo prático e aprofundado de
-**autenticação e autorização** com Spring Security 6: login stateless via JWT assinado com
+**autenticação e autorização** com Spring Security: login stateless via JWT assinado com
 par de chaves RSA, controle de permissão por role, e validação de posse de recurso
 (um usuário não mexe no que não é dele).
 
@@ -31,9 +31,9 @@ propósito, para deixar claro o raciocínio de trade-off de uma POC).
 
 | Camada | Tecnologia |
 |---|---|
-| Linguagem / Runtime | Java 21 |
-| Framework | Spring Boot 3.2.12 |
-| Segurança | Spring Security 6 + OAuth2 Resource Server (JWT, RS256) |
+| Linguagem / Runtime | Java 25 |
+| Framework | Spring Boot 4.1.1 |
+| Segurança | Spring Security 7 + OAuth2 Resource Server (JWT, RS256) |
 | Persistência | Spring Data JPA / Hibernate |
 | Banco de dados | MySQL 8 (via Docker Compose) |
 | Build | Maven (com wrapper, `./mvnw`) |
@@ -52,7 +52,7 @@ propósito, para deixar claro o raciocínio de trade-off de uma POC).
 
 ### Pré-requisitos
 
-- JDK 21
+- JDK 25
 - Docker e Docker Compose
 - OpenSSL (já vem por padrão no Linux/macOS e no Git Bash do Windows)
 
