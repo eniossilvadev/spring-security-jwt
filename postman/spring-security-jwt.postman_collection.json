@@ -1,0 +1,184 @@
+{
+  "info": {
+    "name": "Twitter Simplificado - Spring Security JWT",
+    "description": "Coleção de testes para o projeto de estudo build-and-run-autenticacao-na-pratica. O access_token é capturado automaticamente após qualquer chamada de login e injetado como Bearer em todas as rotas, exceto as marcadas como públicas.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{access_token}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8080", "type": "string" },
+    { "key": "access_token", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login - Admin",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/login",
+              "host": [ "{{base_url}}" ],
+              "path": [ "login" ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const body = pm.response.json();",
+                  "    pm.collectionVariables.set('access_token', body.accessToken);",
+                  "    console.log('access_token atualizado (admin)');",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Login - Usuário comum",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"bruno\",\n  \"password\": \"123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/login",
+              "host": [ "{{base_url}}" ],
+              "path": [ "login" ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const body = pm.response.json();",
+                  "    pm.collectionVariables.set('access_token', body.accessToken);",
+                  "    console.log('access_token atualizado (bruno)');",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Criar Usuário",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"bruno\",\n  \"password\": \"123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users",
+              "host": [ "{{base_url}}" ],
+              "path": [ "users" ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Listar Usuários (admin only) — step 22",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/users",
+              "host": [ "{{base_url}}" ],
+              "path": [ "users" ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tweets",
+      "item": [
+        {
+          "name": "Criar Tweet — step 24",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"olá mundo\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/tweets",
+              "host": [ "{{base_url}}" ],
+              "path": [ "tweets" ]
+            }
+          }
+        },
+        {
+          "name": "Deletar Tweet — step 25",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/tweets/:id",
+              "host": [ "{{base_url}}" ],
+              "path": [ "tweets", ":id" ],
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Feed",
+      "item": [
+        {
+          "name": "Feed paginado — step 28",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/feed?page=0&size=10",
+              "host": [ "{{base_url}}" ],
+              "path": [ "feed" ],
+              "query": [
+                { "key": "page", "value": "0" },
+                { "key": "size", "value": "10" }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

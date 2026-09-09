@@ -1,0 +1,12 @@
+name: spring-security-jwt
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_USER: ${DB_USERNAME:-admin}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-123}
+      MYSQL_DATABASE: my_db
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-123}
+    ports:
+      - "33069:3306"
